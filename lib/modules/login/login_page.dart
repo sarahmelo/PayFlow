@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:payflow/modules/login/login_controller.dart';
 import 'package:payflow/shared/themes/app_images.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 import 'package:payflow/shared/themes/appcolors.dart';
@@ -14,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -36,10 +38,10 @@ class _LoginPageState extends State<LoginPage> {
                   child: Image.asset(
                     AppImages.person,
                     width: 208,
-                    height: 250,
+                    height: 320,
                   )),
               Positioned(
-                  bottom: size.height * 0.18,
+                  bottom: size.height * 0.14,
                   left: 0,
                   right: 0,
                   child: Column(
@@ -49,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                       Image.asset(AppImages.logomini),
                       Padding(
                         padding:
-                            const EdgeInsets.only(top: 30, left: 70, right: 70),
+                            const EdgeInsets.only(left: 70, right: 70, top: 30),
                         child: Text("Organize seus boletos em um só lugar",
                             textAlign: TextAlign.center,
                             style: TextStyles.titleHome),
@@ -59,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                             const EdgeInsets.only(left: 40, right: 40, top: 40),
                         child: SocialLoginButton(
                           onTap: () {
-                            print('clicou');
+                            controller.googleSingIn(context);
                           },
                         ),
                       )

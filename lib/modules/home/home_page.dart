@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:payflow/modules/home/home_controller.dart';
+import 'package:payflow/shared/auth/auth_controller.dart';
+import 'package:payflow/shared/models/user_model.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 import 'package:payflow/shared/themes/appcolors.dart';
 
@@ -11,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final controller = AuthController();
   final homeController = HomeController();
   final pages = [
     Container(
@@ -20,6 +25,8 @@ class _HomePageState extends State<HomePage> {
       color: Colors.amber[50],
     )
   ];
+
+  // UserModel? get user => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,11 +51,19 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyles.titleRegular,
               ),
               trailing: Container(
-                height: 48,
-                width: 48,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(5)),
+                child: TextButton(
+                  onPressed: () {
+                    // controller.logOut(context, user);
+                  },
+                  child: Icon(Icons.exit_to_app_rounded,
+                      color: AppColors.background),
+                ),
+
+                // height: 48,
+                // width: 48,
+                // decoration: BoxDecoration(
+                //     color: Colors.black,
+                //     borderRadius: BorderRadius.circular(5)),
               ),
             ),
           ),
@@ -71,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 )),
             GestureDetector(
               onTap: () {
-                print("clicou");
+                Navigator.pushNamed(context, "/barcode_scanner");
               },
               child: Container(
                 width: 56,

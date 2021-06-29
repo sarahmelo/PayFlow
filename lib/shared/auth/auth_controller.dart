@@ -37,4 +37,9 @@ class AuthController {
       setUser(context, null);
     }
   }
+
+  void logOut(BuildContext context, UserModel? user) {
+    user = null;
+    Navigator.pushReplacementNamed(context, "/login");
+  }
 }
